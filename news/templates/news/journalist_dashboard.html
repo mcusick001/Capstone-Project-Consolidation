@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+{% block content %}
+<h2>Journalist Dashboard</h2>
+<h3>Your Submitted Articles</h3>
+{% if articles %}
+    <ul>
+        {% for article in articless %}
+            <li><strong>{{ article.title }}</strong> - Approved: {{ article.approved }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You haven't submitted any articles yet.</p>
+{% endif %}
+{% endblock %}

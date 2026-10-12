@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+{% block content %}
+<h2>Editor Dashboard - Pending Articles</h2>
+{% if articles %}
+    {% for article in articles %}
+        <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px;">
+            <h3>{{ article.title }}</h3>
+            <p><strong>Author:</strong> {{ article.journalist.username }} | <strong>Publisher:</strong> {{ article.publisher.name }}</p>
+            <p>{{ article.content }}</p>
+            <form action="{% url 'approved_article' article.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn" style="background: #28a745;">Approve Article</button>
+            </form>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No articles currently waiting for approval.</p>
+{% endif %}
+{% endblock %}
